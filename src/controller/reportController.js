@@ -66,7 +66,7 @@ const exportHeroiPDF = async (req, res) => {
 
     // Conteúdo com linhas alternadas e espaçamento
     let isAlternate = false;
-    posts.forEach((post) => {
+    posts.forEach((heroi) => {
       if (isAlternate) doc.fillColor("#f0f0f0").rect(50, doc.y, 500, 15).fill();
       doc
         .fillColor("black")
