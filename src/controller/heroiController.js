@@ -1,4 +1,4 @@
-const heroiModels = require('../models/heroiModel');
+const heroiModels = require('../models/editorModels');
 
 const getAllHerois = async (req, res) => {
     try {
