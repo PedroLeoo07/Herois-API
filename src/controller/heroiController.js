@@ -37,5 +37,19 @@ const createHeroi = async (req, res) => {
     }
 };
 
+const updateHeroi = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const { nome, poder } = req.body;
+        const updateHeroi = await heroiModels.updateHeroi(id, nome, poder);
+        if(!updateHeroi){
+            return res.status(404).json({ message: "Heroi não encontrado" });
+        }
+        res.status(200).json({ message: "Heroi atualizado com sucesso", updateHeroi });
+    }catch (error){
+        res.status(500).json({ message: "Erro ao atualizar o heroi", error });
+    }
+}
 
-module.exports = { getAllHerois, getHeroi };
+
+module.exports = { getAllHerois, getHeroi, createHeroi, updateHeroi };
