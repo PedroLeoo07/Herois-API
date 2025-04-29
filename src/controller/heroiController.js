@@ -49,7 +49,19 @@ const updateHeroi = async (req, res) => {
     }catch (error){
         res.status(500).json({ message: "Erro ao atualizar o heroi", error });
     }
-}
+};
+
+const deleteHeroi = async (req, res) => {
+    try {
+        const deletedHeroi = await heroiModels.deleteHeroi(req.params.id);
+        if (!deletedHeroi) {
+            return res.status(404).json({ message: "Heroi não encontrado" });
+        }
+        res.status(200).json({ message: "Heroi deletado com sucesso", deletedHeroi });
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao deletar o heroi", error });
+    }
+};
 
 
-module.exports = { getAllHerois, getHeroi, createHeroi, updateHeroi };
+module.exports = { getAllHerois, getHeroi, createHeroi, updateHeroi, deleteHeroi };
