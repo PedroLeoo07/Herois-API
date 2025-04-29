@@ -22,5 +22,20 @@ const getHeroi = async (req, res) => {
     }
 };
 
+const createHeroi = async (req, res) => {
+    try {
+        const { nome, poder} = req.body;
+        const photo = req.file ? req.file.path : null;
+
+        console.log("Arquivo recebido:", req.file);
+
+        const newHeroi = await postModels.createHeroi(nome, poder, photo);
+    res.status(201).json({ message: "Heroi criado com sucesso", newHeroi });
+    } catch (error) {
+        console.error("Erro ao criar heroi:", error);
+        res.status(500).json({ message: "Erro ao criar o heroi", error });
+    }
+};
+
 
 module.exports = { getAllHerois, getHeroi };
