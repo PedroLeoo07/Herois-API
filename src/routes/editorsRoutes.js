@@ -1,23 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const heroiController = require("../controller/heroiController");
+const editorController = require("../controller/editorController");
 const upload = require("../config/upload");
 const apiKeyMiddleware = require("../config/apiKey");
 
 router.use(apiKeyMiddleware)
 
 // Rota para obter todos os heróis ou filtrar por descrição
-router.get("/herois", heroiController.getHerois);
+router.get("/editors", editorController.getEditor);
 
 // Rota para obter um herói específico por ID
-router.get("/herois/:id", heroiController.getHeroisById);
+router.get("/editors/:id", editorController.getEditorById);
 
 // Rota para criar um novo herói
-router.post("/herois", upload.single("photo", heroiController.createHeroi))
+router.post("/editors", upload.single("photo", editorController.createEditor));
 
 // Rota para atualizar um herói existente
-router.put("/herois/:id", heroiController.updateHeroi);
+router.put("/editors/:id", editorController.updateEditor);
 
 // Rota para deletar um herói
-router.delete("/herois/:id", heroiController.deleteHeroi);
+router.delete("/editors/:id", editorController.deleteEditor);
 
+module.exports = router;

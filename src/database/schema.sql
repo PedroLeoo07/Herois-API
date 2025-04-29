@@ -4,14 +4,12 @@ CREATE DATABASE heroi;
 
 CREATE TABLE herois (
     id SERIAL PRIMARY KEY,
-    id_editora INT NOT NULL,
+    id_editor INT NOT NULL,
     nome VARCHAR(255) NOT NULL,
-    poder VARCHAR(255) NOT NULL,
-    FOREIGN KEY (id_editora) REFERENCES editoras(id)
+    poder VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE editores (
-    id SERIAL PRIMARY KEY,
     id_heroi INT NOT NULL,
     nome VARCHAR(255) NOT NULL,
     sexo VARCHAR(100) NOT NULL,
@@ -19,7 +17,7 @@ CREATE TABLE editores (
     FOREIGN KEY (id_heroi) REFERENCES herois(id)
 );
 
-INSERT INTO herois (id_editora, nome, poder) VALUES
+INSERT INTO herois (id_editor, nome, poder) VALUES
 (1, 'Superman', 'Super força'),
 (2, 'Batman', 'Inteligência'),
 (3, 'Flash', 'Velocidade'),
