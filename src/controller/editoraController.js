@@ -1,24 +1,11 @@
-const editorModels = require("../models/editorModels");
+const editoraModels = require('../models/editoraModels');
 
-const getAllEditors = async (req, res) => {
+const getAllEditoras = async (req, res) => {
     try {
-        const editors = await editorModels.getEditors();
-        res.status(200).json({ message: "Todos os editores abaixo!!", editors });
+        const editoras = await editoraModel.getAllEditoras();
+        res.status(200).json({ message: "Todos os editores abaixo!!", editoras });
     } catch (error) {
         res.status(404).json({ message: "Erro ao buscar os editores" });
-    }
-};
-
-const getEditor = async (req, res) => {
-    try {
-        const editor = await editorModels.getEditorById(req.query.id);
-        if (!editor) {
-            res.status(404).json({ message: "Editor não encontrado" });
-        } else {
-            res.status(200).json({ message: "Editor encontrado com sucesso", editor });
-        }
-    } catch (error) {
-        res.status(400).json({ message: "Erro ao buscar o editor" });
     }
 };
 
@@ -72,4 +59,4 @@ const deleteEditor = async (req, res) => {
     }
 };
 
-module.exports = { getAllEditors, getEditor, getEditorById, createEditor, updateEditor, deleteEditor };
+module.exports = { getAllEditoras, getEditorById, createEditor, updateEditor, deleteEditor };
