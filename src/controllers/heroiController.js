@@ -1,60 +1,60 @@
 const timeModel = require('../models/timeModel');
 
-const getAllTimes = async (req, res) => {
+const getAllHerois = async (req, res) => {
   try {
-    const times = await timeModel.getAllTimes();
-    res.json(times);
+    const herois = await heroiModel.getAllHerois();
+    res.json(herois);
   } catch (error) {
-    console.error('Erro ao buscar os times:', error);
-    res.status(500).json({ error: 'Erro ao buscar times.' });
+    console.error('Erro ao buscar os Herois:', error);
+    res.status(500).json({ error: 'Erro ao buscar Herois.' });
   }
 }
 
-const getTimeById = async (req, res) => {
+const getHeroiById = async (req, res) => {
   try {
-    const time = await timeModel.getTimeById(req.params.id);
-    if (!time) {
-      return res.status(404).json({ error: 'Time não encontrado.' });
+    const heroi = await heroiModel.getHeroiById(req.params.id);
+    if (!heroi) {
+      return res.status(404).json({ error: 'heroi não encontrado.' });
     }
-    res.json(time);
+    res.json(heroi);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar time.' });
+    res.status(500).json({ error: 'Erro ao buscar heroi.' });
   }
 }
 
-const createTime = async (req, res) => {
+const createHeroi = async (req, res) => {
   try {
-    const { name, logo } = req.body;
-    const newTime = await timeModel.createTime(name, logo);
-    res.status(201).json(newTime);
+    const { name, poder, photo } = req.body;
+    const newHeroi = await heroiModel.createHeroi(name, poder, photo);
+    res.status(201).json(newHeroi);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao criar time.' });
+    res.status(500).json({ error: 'Erro ao criar Heroi.' });
   }
 }
 
-const updateTime = async (req, res) => {
+const updateHeroi = async (req, res) => {
   try {
-    const { name, logo, jogador_id } = req.body;
-    const time = await timeModel.updateTime(req.params.id, name, logo, jogador_id);
-    if (!time) {
-      return res.status(404).json({ error: 'Time não encontrado.' });
+    const { name, poder, photo } = req.body;
+    const heroi = await heroiModel.updateHeroi(req.params.id, name, poder, photo);
+    if (!heroi) {
+      return res.status(404).json({ error: 'heroi não encontrado.' });
     }
-    res.json(time);
+    res.json(heroi);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao editar time.' });
+    res.status(500).json({ error: 'Erro ao editar Heroi.' });
   }
 }
 
-const deleteTime = async (req, res) => {
+const deleteHeroi = async (req, res) => {
   try {
-    const result = await timeModel.deleteTime(req.params.id);
+    const result = await heroiModel.deleteHeroi(req.params.id);
     if (result.error) {
       return res.status(404).json(result);
     }
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: 'Erro ao deletar time.' });
+    res.status(500).json({ error: 'Erro ao deletar Heroi.' });
   }
 }
 
-module.exports = { getAllTimes, getTimeById, createTime, updateTime, deleteTime };
+module.exports = { getAllHerois, getHeroiById, createHeroi, updateHeroi, deleteHeroi };

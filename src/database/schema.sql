@@ -5,6 +5,7 @@ CREATE DATABASE herois;
 CREATE TABLE heroes (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
+    poder VARCHAR(100) NOT NULL,
     photo TEXT
 );
 
@@ -16,7 +17,7 @@ CREATE TABLE editora (
     hero_id INTEGER REFERENCES heroes(id) ON DELETE CASCADE
 );
 
-INSERT INTO heroes (name, photo) VALUES 
+INSERT INTO heroes (name, poder, photo) VALUES 
     ('Homem Aranha', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSESdem_zNbPgpWUYFqFQL2eox6zzkoAS-Lig&s'),
     ('Capitão América', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdoZvI5g_FKV49A_sqMAQq9B9_6JRBiv3WAg&s'),
     ('Deadpool', 'https://www.deviante.com.br/wp-content/uploads/2016/02/deadpool-001.jpg'),
