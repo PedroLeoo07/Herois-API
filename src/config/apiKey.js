@@ -8,7 +8,7 @@ const apiKeyMiddleware = (req, res, next) => {
         return res.status(401).json({ message: 'Chave Da Api Não fornecida' });
     }
 
-    if (clientKey !== serverKey) {
+    if (clientKey != serverKey) {
         return res.status(403).json({ message: 'Chave Da Api inválida' });
     }
     next();

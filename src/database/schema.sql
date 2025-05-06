@@ -8,9 +8,11 @@ CREATE TABLE heroes (
     photo TEXT
 );
 
-CREATE TABLE publisher (
+CREATE TABLE editora (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
+    nascimento DATE,
+    nacionalidade VARCHAR(100) NOT NULL,
     hero_id INTEGER REFERENCES heroes(id) ON DELETE CASCADE
 );
 
