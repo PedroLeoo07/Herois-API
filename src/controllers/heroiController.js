@@ -1,4 +1,4 @@
-const timeModel = require('../models/timeModel');
+const heroiModel = require('../models/heroiModel.js');
 
 const getAllHerois = async (req, res) => {
   try {
@@ -34,8 +34,8 @@ const createHeroi = async (req, res) => {
 
 const updateHeroi = async (req, res) => {
   try {
-    const { name, poder, photo } = req.body;
-    const heroi = await heroiModel.updateHeroi(req.params.id, name, poder, photo);
+    const { name, poder } = req.body;
+    const heroi = await heroiModel.updateHeroi(req.params.id, name, poder);
     if (!heroi) {
       return res.status(404).json({ error: 'heroi não encontrado.' });
     }

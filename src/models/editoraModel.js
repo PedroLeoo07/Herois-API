@@ -1,42 +1,42 @@
 const pool = require('../config/database');
 
-const getJogadores = async (idade) => {
-    if (!idade) {
-        const result = await pool.query("SELECT * FROM jogadores");
+const getEditoras = async (nacionalidade) => {
+    if (!nacionalidade) {
+        const result = await pool.query("SELECT * FROM editoras");
         return result.rows;
     } else {
-        const result = await pool.query("SELECT * FROM jogadores WHERE idade = $1", [idade]);
+        const result = await pool.query("SELECT * FROM editoras WHERE nacionalidade = $1", [nacionalidade]);
         return result.rows;
     }
 };
 
-const getJogador = async (id) => {
-    const result = await pool.query("SELECT * FROM jogadores WHERE id = $1", [id]);
+const getEditora = async (id) => {
+    const result = await pool.query("SELECT * FROM editoras WHERE id = $1", [id]);
     return result.rows[0];
 }
 
-const createJogador = async (name, idade, gols, photo) => { 
+const createEditora = async (name, nacionalidade, nascimento) => { 
     const result = await pool.query(
-        "INSERT INTO jogadores (name, idade, gols, photo) VALUES ($1, $2, $3, $4) RETURNING *",
-        [name, idade, gols, photo]
+        "INSERT INTO editoras (name, nascimento, nacionalidade) VALUES ($1, $2, $3) RETURNING *",
+        [name, nascimento, nacionalidade]
     );
     return result.rows[0];
 }
 
-const updateJogador = async (id, name, idade, gols) => {
+const updateEditora = async (id, name, nacionalidade, nascimento) => {
     const result = await pool.query(
-        "UPDATE jogadores SET name = $1, idade = $2, gols = $3 WHERE id = $4 RETURNING *",
-        [name, idade, gols, id]
+        "UPDATE editoras SET name = $1, nascimento = $2, nacionalidade = $3 WHERE id = $4 RETURNING *",
+        [name, nascimento, nacionalidade, id]
     );
     return result.rows[0];
 }
 
-const deleteJogador = async (id) => {
-    const result = await pool.query("DELETE FROM jogadores WHERE id = $1 RETURNING *", [id]);
+const deleteEditora = async (id) => {
+    const result = await pool.query("DELETE FROM editoras WHERE id = $1 RETURNING *", [id]);
     if (result.rowCount === 0) {
-        return { error: "Jogador não encontrado." };
+        return { error: "Editora não encontrada." };
     }
-    return { message: "Jogador deletado com sucesso." };
+    return { message: "Editora deletada com sucesso." };
 };
 
-module.exports = { getJogadores, getJogador, createJogador, updateJogador, deleteJogador };
+module.exports = { getEditoras, getEditora, createEditora, updateEditora, deleteEditora };
